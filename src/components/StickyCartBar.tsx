@@ -31,7 +31,7 @@ export default function StickyCartBar() {
     addItem({
       id: PRODUCT.id,
       name: PRODUCT.name,
-      variant: "Black",
+      variant: "Noir",
       price: PRODUCT.price,
       image: PRODUCT.images[0].src,
     });
@@ -51,7 +51,7 @@ export default function StickyCartBar() {
           onClick={handleAdd}
           className="bg-white text-primary text-xs tracking-[0.2em] uppercase font-medium py-3 px-6"
         >
-          Add to Cart
+          Ajouter au panier
         </button>
       </div>
     </div>

@@ -1,4 +1,4 @@
-export type ProductVariant = "Black" | "White" | "Pink";
+export type ProductVariant = "Noir" | "Blanc" | "Rose";
 
 export interface Product {
   id: string;
@@ -17,79 +17,79 @@ export interface Product {
 export const PRODUCT: Product = {
   id: "h2ofloss-2in1",
   vendor: "H2OFLOSS",
-  name: "2-in-1 Oral Care Kit",
-  subtitle: "Water Flosser + Sonic Electric Toothbrush",
+  name: "Kit de soins bucco-dentaires 2-en-1",
+  subtitle: "Hydropulseur + brosse à dents sonique électrique",
   price: 59.99,
   comparePrice: 89.99,
   rating: 4.6,
   reviewCount: 14,
-  variants: ["Black", "White", "Pink"],
+  variants: ["Noir", "Blanc", "Rose"],
   images: [
-    { src: "/images/1.webp", alt: "H2ofloss kit — front view" },
-    { src: "/images/best.webp", alt: "H2ofloss kit — both devices" },
-    { src: "/images/best2.webp", alt: "H2ofloss sonic toothbrush — side view" },
-    { src: "/images/best3.webp", alt: "H2ofloss complete kit — flat lay" },
+    { src: "/images/1.webp", alt: "Kit H2OFLOSS — vue de face" },
+    { src: "/images/best.webp", alt: "Kit H2OFLOSS — les deux appareils" },
+    { src: "/images/best2.webp", alt: "Brosse à dents sonique H2OFLOSS — vue de côté" },
+    { src: "/images/best3.webp", alt: "Kit complet H2OFLOSS — vue à plat" },
   ],
   inBox: [
-    "Sonic Toothbrush",
-    "Cordless Water Flosser",
-    "300ml water tank",
-    "5 nozzle tips",
-    "4 brush heads",
-    "USB-C charging cable",
-    "Travel pouch",
+    "Brosse à dents sonique",
+    "Hydropulseur sans fil",
+    "Réservoir d'eau 300 ml",
+    "5 embouts",
+    "4 têtes de brosse",
+    "Câble de charge USB-C",
+    "Pochette de voyage",
   ],
 };
 
 export const FEATURES = [
   {
-    title: "Water Flosser",
+    title: "Hydropulseur",
     body:
-      "300ml tank, 20–110 PSI, 5 pressure modes. Deep-cleans between teeth and below the gumline.",
+      "Réservoir 300 ml, 20–110 PSI, 5 modes de pression. Nettoie en profondeur entre les dents et sous la gencive.",
   },
   {
-    title: "Sonic Toothbrush",
+    title: "Brosse à dents sonique",
     body:
-      "50° wide sweep angle. 2-min smart timer with 30-sec zone reminders.",
+      "Angle de balayage large de 50°. Minuteur intelligent de 2 min avec rappels de zone de 30 s.",
   },
   {
-    title: "IPX7 Waterproof",
-    body: "Shower-safe. Use it anywhere without worry.",
+    title: "Étanche IPX7",
+    body: "Utilisable sous la douche. Utilisez-le partout sans souci.",
   },
   {
-    title: "Long Battery Life",
-    body: "Up to 90 days on one charge. Travel-ready USB-C.",
+    title: "Autonomie longue durée",
+    body: "Jusqu'à 90 jours sur une charge. USB-C prêt pour les voyages.",
   },
   {
-    title: "5 Cleaning Modes",
-    body: "Daily, Gentle, Deep, Pulse, Custom. For every sensitivity.",
+    title: "5 modes de nettoyage",
+    body: "Quotidien, Doux, Profond, Pulse, Personnalisé. Pour chaque sensibilité.",
   },
   {
-    title: "BPA-Free",
-    body: "Safe materials. Dentist-recommended design.",
+    title: "Sans BPA",
+    body: "Matériaux sûrs. Conception recommandée par les dentistes.",
   },
 ];
 
 export const FAQS = [
   {
-    q: "Is it safe to use in the shower?",
-    a: "Yes. Both devices are IPX7 waterproof and fully sealed.",
+    q: "Est-ce sûr d'utiliser sous la douche ?",
+    a: "Oui. Les deux appareils sont étanches IPX7 et totalement scellés.",
   },
   {
-    q: "How long does the battery last?",
-    a: "The toothbrush runs up to 90 days; the flosser up to 30 days on one USB-C charge.",
+    q: "Quelle est l'autonomie de la batterie ?",
+    a: "La brosse à dents tient jusqu'à 90 jours ; l'hydropulseur jusqu'à 30 jours sur une charge USB-C.",
   },
   {
-    q: "Can I use it with braces?",
-    a: "Absolutely. The flosser's pulsed water stream cleans around brackets effectively.",
+    q: "Puis-je l'utiliser avec un appareil dentaire ?",
+    a: "Absolument. Le jet d'eau pulsé nettoie efficacement autour des bagues.",
   },
   {
-    q: "What comes in the box?",
-    a: "Sonic toothbrush, water flosser, 300ml tank, 5 nozzle tips, 4 brush heads, USB-C cable, travel pouch.",
+    q: "Que contient la boîte ?",
+    a: "Brosse à dents sonique, hydropulseur, réservoir 300 ml, 5 embouts, 4 têtes de brosse, câble USB-C, pochette de voyage.",
   },
   {
-    q: "What is your return policy?",
-    a: "30-day hassle-free returns. Full refund, no questions asked.",
+    q: "Quelle est votre politique de retour ?",
+    a: "Retours sous 30 jours, sans tracas. Remboursement complet, sans questions.",
   },
 ];
 
@@ -97,19 +97,19 @@ export const REVIEWS = [
   {
     stars: 5,
     text:
-      "Honestly the best oral care upgrade I've made. My gums feel cleaner after a week than they did after a year of regular flossing.",
-    name: "Sarah M. — Verified Purchase",
+      "Honnêtement, la meilleure amélioration de soins bucco-dentaires que j'ai faite. Mes gencives sont plus propres en une semaine qu'en un an de fil dentaire classique.",
+    name: "Sarah M. — Achat vérifié",
   },
   {
     stars: 5,
     text:
-      "I have braces and this thing is a lifesaver. The pulsed water gets everything out, and the toothbrush is gentle but powerful.",
-    name: "James R. — Verified Purchase",
+      "J'ai un appareil et ce produit m'a sauvé. Le jet pulsé enlève tout, et la brosse est douce mais puissante.",
+    name: "James R. — Achat vérifié",
   },
   {
     stars: 4,
     text:
-      "Great battery life — charged it once in three weeks. Travel pouch is a nice touch. Would buy again.",
-    name: "Priya K. — Verified Purchase",
+      "Excellente autonomie — chargée une fois en trois semaines. La pochette de voyage est un vrai plus. Je rachèterais.",
+    name: "Priya K. — Achat vérifié",
   },
 ];

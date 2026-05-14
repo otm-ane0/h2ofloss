@@ -5,11 +5,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const ITEMS = [
-  "4.6★ Rating",
-  "10,000+ Happy Customers",
-  "Dentist Recommended",
-  "IPX7 Certified",
-  "BPA-Free",
+  "Note 4,6★",
+  "10 000+ clients satisfaits",
+  "Recommandé par les dentistes",
+  "Certifié IPX7",
+  "Sans BPA",
 ];
 
 export default function SocialProof() {

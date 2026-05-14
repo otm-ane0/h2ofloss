@@ -8,7 +8,7 @@ export default function FAQ() {
   return (
     <section className="bg-surface py-24 lg:py-28">
       <div className="container-dawn">
-        <h2 className="text-center text-3xl md:text-[40px]">Questions? We have answers.</h2>
+        <h2 className="text-center text-3xl md:text-[40px]">Des questions ? Nous avons les réponses.</h2>
         <div className="max-w-2xl mx-auto mt-12">
           {FAQS.map((f, i) => (
             <FAQItem

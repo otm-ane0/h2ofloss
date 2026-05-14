@@ -18,6 +18,10 @@ interface CartContextValue {
   removeItem: (id: string, variant: ProductVariant) => void;
   updateQty: (id: string, variant: ProductVariant, qty: number) => void;
   clear: () => void;
+  isDrawerOpen: boolean;
+  lastAdded: CartItem | null;
+  openDrawer: () => void;
+  closeDrawer: () => void;
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
@@ -26,6 +30,8 @@ const STORAGE_KEY = "h2ofloss_cart_v1";
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
   const [hydrated, setHydrated] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [lastAdded, setLastAdded] = useState<CartItem | null>(null);
 
   useEffect(() => {
     try {
@@ -47,6 +53,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, hydrated]);
 
   const addItem: CartContextValue["addItem"] = (item, qty = 1) => {
+    setLastAdded({ ...item, quantity: qty });
+    setIsDrawerOpen(true);
     setItems((prev) => {
       const idx = prev.findIndex((p) => p.id === item.id && p.variant === item.variant);
       if (idx >= 0) {
@@ -73,12 +81,28 @@ export function CartProvider({ children }: { children: ReactNode }) {
   };
 
   const clear = () => setItems([]);
+  const openDrawer = () => setIsDrawerOpen(true);
+  const closeDrawer = () => setIsDrawerOpen(false);
 
   const count = items.reduce((s, i) => s + i.quantity, 0);
   const total = items.reduce((s, i) => s + i.quantity * i.price, 0);
 
   return (
-    <CartContext.Provider value={{ items, count, total, addItem, removeItem, updateQty, clear }}>
+    <CartContext.Provider
+      value={{
+        items,
+        count,
+        total,
+        addItem,
+        removeItem,
+        updateQty,
+        clear,
+        isDrawerOpen,
+        lastAdded,
+        openDrawer,
+        closeDrawer,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

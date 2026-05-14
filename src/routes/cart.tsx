@@ -7,8 +7,8 @@ import Footer from "@/components/Footer";
 export const Route = createFileRoute("/cart")({
   head: () => ({
     meta: [
-      { title: "Cart — H2OFLOSS" },
-      { name: "description", content: "Review your cart and check out." },
+      { title: "Panier — H2OFLOSS" },
+      { name: "description", content: "Vérifiez votre panier et passez à la caisse." },
     ],
   }),
   component: CartPage,
@@ -23,16 +23,16 @@ function CartPage() {
       <AnnouncementBar />
       <Navbar />
       <main className="container-dawn py-20 min-h-[60vh]">
-        <h1 className="text-3xl md:text-[40px] mb-10">Your cart</h1>
+        <h1 className="text-3xl md:text-[40px] mb-10">Votre panier</h1>
 
         {items.length === 0 ? (
           <div className="py-16 text-center">
-            <p className="text-muted-foreground mb-6">Your cart is empty.</p>
+            <p className="text-muted-foreground mb-6">Votre panier est vide.</p>
             <Link
               to="/"
               className="inline-block bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
             >
-              Continue shopping
+              Continuer les achats
             </Link>
           </div>
         ) : (
@@ -57,7 +57,7 @@ function CartPage() {
                         <button
                           onClick={() => updateQty(item.id, item.variant, item.quantity - 1)}
                           className="w-8 h-9"
-                          aria-label="Decrease"
+                          aria-label="Diminuer"
                         >
                           −
                         </button>
@@ -65,7 +65,7 @@ function CartPage() {
                         <button
                           onClick={() => updateQty(item.id, item.variant, item.quantity + 1)}
                           className="w-8 h-9"
-                          aria-label="Increase"
+                          aria-label="Augmenter"
                         >
                           +
                         </button>
@@ -74,7 +74,7 @@ function CartPage() {
                         onClick={() => removeItem(item.id, item.variant)}
                         className="text-xs underline text-muted-foreground hover:text-foreground"
                       >
-                        Remove
+                        Supprimer
                       </button>
                     </div>
                   </div>
@@ -86,14 +86,14 @@ function CartPage() {
             </div>
 
             <aside className="bg-surface p-8 self-start">
-              <h2 className="text-xl mb-4">Order summary</h2>
+              <h2 className="text-xl mb-4">Récapitulatif de commande</h2>
               <div className="flex justify-between text-sm py-2 border-b border-border">
-                <span>Subtotal</span>
+                <span>Sous-total</span>
                 <span>${total.toFixed(2)}</span>
               </div>
               <div className="flex justify-between text-sm py-2 border-b border-border">
-                <span>Shipping</span>
-                <span>{total > 35 ? "Free" : "$5.00"}</span>
+                <span>Livraison</span>
+                <span>{total > 35 ? "Gratuite" : "$5.00"}</span>
               </div>
               <div className="flex justify-between text-base font-medium pt-4">
                 <span>Total</span>
@@ -102,17 +102,19 @@ function CartPage() {
               <button
                 onClick={() => {
                   clear();
-                  navigate({ to: "/thank-you" });
+                  // Redirect user to external tracking/checkout URL
+                  window.location.href =
+                    "https://www.nhlv1trk.com/FG4FQZ7/C8MDTLF/?sub3=H2ofloss%202-in-1%20Oral%20Care%20Kit&sub4=https://h2ofloss.com/cdn/shop/files/1_fcde47ed-19ee-400e-ba06-03e20b190cc5_1728x.jpg?v=1762929933";
                 }}
                 className="mt-6 w-full bg-primary text-primary-foreground py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
               >
-                Checkout
+                Passer à la caisse
               </button>
               <Link
                 to="/"
                 className="mt-3 block text-center text-sm underline text-muted-foreground"
               >
-                Continue shopping
+                Continuer les achats
               </Link>
             </aside>
           </div>

@@ -16,7 +16,7 @@ export default function AnnouncementBar() {
       ref={ref}
       className="w-full bg-primary text-primary-foreground text-[11px] tracking-[0.2em] uppercase text-center py-2.5 font-medium"
     >
-      Free shipping on orders over $35 · 30-day returns
+      Livraison gratuite pour les commandes de plus de 35 $ · Retours sous 30 jours
     </div>
   );
 }

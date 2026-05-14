@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { Link } from "@tanstack/react-router";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -9,6 +10,7 @@ interface Row {
   title: string;
   body: string;
   cta: string;
+  ctaHref?: string;
   image: string;
   imageLeft: boolean;
   imageContain?: boolean;
@@ -16,26 +18,27 @@ interface Row {
 
 const ROWS: Row[] = [
   {
-    eyebrow: "Water Flosser",
-    title: "Gum care that goes deeper.",
-    body: "Pulsed water pressure reaches where brushing can't. Ideal for braces, implants, and crowns.",
-    cta: "Shop Now",
+    eyebrow: "Hydropulseur",
+    title: "Des gencives plus saines, en profondeur.",
+    body: "La pression d'eau pulsée atteint là où le brossage ne peut pas. Idéal pour appareils, implants et couronnes.",
+    cta: "Acheter maintenant",
+    ctaHref: "/#buy",
     image: "/images/life1.jpg",
     imageLeft: true,
   },
   {
-    eyebrow: "Sonic Toothbrush",
-    title: "2 minutes. A lifetime of better smiles.",
-    body: "Smart timer and zone reminders guide perfect brushing every time.",
-    cta: "Learn More",
+    eyebrow: "Brosse à dents sonique",
+    title: "2 minutes. Un sourire éclatant pour la vie.",
+    body: "Minuteur intelligent et rappels de zone pour un brossage parfait à chaque fois.",
+    cta: "En savoir plus",
     image: "/images/dd.webp",
     imageLeft: false,
   },
   {
-    eyebrow: "Combo System",
-    title: "Together, they remove 2× more plaque.",
-    body: "Use both daily for clinically superior results. Backed by dental professionals worldwide.",
-    cta: "See Studies",
+    eyebrow: "Système duo",
+    title: "Ensemble, ils éliminent 2x plus de plaque.",
+    body: "Utilisez-les chaque jour pour des résultats cliniquement supérieurs. Recommandé par des professionnels dentaires dans le monde entier.",
+    cta: "Voir les études",
     image: "/images/life3.jpg",
     imageLeft: true,
     imageContain: true,
@@ -111,9 +114,18 @@ export default function ImageWithText() {
               </p>
               <h2 className="mt-4 text-3xl md:text-4xl">{r.title}</h2>
               <p className="mt-5 text-[16px] text-muted-foreground leading-[1.7]">{r.body}</p>
-              <button className="mt-8 bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors">
-                {r.cta}
-              </button>
+              {r.ctaHref ? (
+                <Link
+                  to={r.ctaHref}
+                  className="mt-8 inline-block bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
+                >
+                  {r.cta}
+                </Link>
+              ) : (
+                <button className="mt-8 bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors">
+                  {r.cta}
+                </button>
+              )}
             </div>
           </div>
         </div>

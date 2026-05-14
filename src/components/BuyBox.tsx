@@ -5,16 +5,16 @@ import { useCart } from "@/context/CartContext";
 
 export default function BuyBox() {
   const { addItem } = useCart();
-  const [variant, setVariant] = useState<ProductVariant>("Black");
+  const [variant, setVariant] = useState<ProductVariant>("Noir");
   const [qty, setQty] = useState(1);
   const [activeImg, setActiveImg] = useState(0);
   const mainImgRef = useRef<HTMLImageElement>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
   const [openAcc, setOpenAcc] = useState<string | null>("box");
   const variantSwatches: Record<ProductVariant, string> = {
-    Black: "#1a1a1a",
-    White: "#f4f0eb",
-    Pink: "#f7a1c4",
+    Noir: "#1a1a1a",
+    Blanc: "#f4f0eb",
+    Rose: "#f7a1c4",
   };
 
   const swapImage = (idx: number) => {
@@ -69,7 +69,7 @@ export default function BuyBox() {
               <button
                 key={img.src}
                 onClick={() => swapImage(i)}
-                aria-label={`View image ${i + 1}`}
+                aria-label={`Voir l'image ${i + 1}`}
                 className={`aspect-square overflow-hidden border ${
                   i === activeImg ? "border-foreground" : "border-border"
                 }`}
@@ -91,14 +91,14 @@ export default function BuyBox() {
           <a href="#reviews" className="mt-3 flex items-center gap-2 text-sm hover:opacity-60">
             <Stars rating={PRODUCT.rating} />
             <span>{PRODUCT.rating.toFixed(1)}</span>
-            <span className="text-muted-foreground">· ({PRODUCT.reviewCount} reviews)</span>
+            <span className="text-muted-foreground">· ({PRODUCT.reviewCount} avis)</span>
           </a>
 
           <div className="mt-5 flex items-center gap-3">
             <span className="text-2xl">${PRODUCT.price.toFixed(2)}</span>
             <span className="line-through text-muted-foreground">${PRODUCT.comparePrice.toFixed(2)}</span>
             <span className="bg-gold text-white text-xs px-2 py-0.5 tracking-wide font-medium">
-              Save ${(PRODUCT.comparePrice - PRODUCT.price).toFixed(0)}
+              Économisez ${(PRODUCT.comparePrice - PRODUCT.price).toFixed(0)}
             </span>
           </div>
 
@@ -106,14 +106,14 @@ export default function BuyBox() {
 
           <div>
             <p className="text-sm mb-3">
-              Color — <span className="text-muted-foreground">{variant}</span>
+              Couleur — <span className="text-muted-foreground">{variant}</span>
             </p>
             <div className="flex gap-3">
               {PRODUCT.variants.map((v) => (
                 <button
                   key={v}
                   onClick={() => setVariant(v)}
-                  aria-label={`Color ${v}`}
+                  aria-label={`Couleur ${v}`}
                   className={`w-9 h-9 rounded-full border ${
                     variant === v ? "ring-2 ring-foreground ring-offset-2" : "border-border"
                   }`}
@@ -128,7 +128,7 @@ export default function BuyBox() {
               <button
                 onClick={() => setQty((q) => Math.max(1, q - 1))}
                 className="w-10 h-12 hover:bg-surface"
-                aria-label="Decrease quantity"
+                aria-label="Diminuer la quantité"
               >
                 −
               </button>
@@ -136,7 +136,7 @@ export default function BuyBox() {
               <button
                 onClick={() => setQty((q) => q + 1)}
                 className="w-10 h-12 hover:bg-surface"
-                aria-label="Increase quantity"
+                aria-label="Augmenter la quantité"
               >
                 +
               </button>
@@ -148,28 +148,25 @@ export default function BuyBox() {
             onClick={handleAdd}
             className="mt-6 w-full bg-primary text-primary-foreground py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
           >
-            Add to Cart — ${(PRODUCT.price * qty).toFixed(2)}
-          </button>
-          <button className="mt-3 w-full border border-foreground py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-surface transition-colors">
-            Buy with PayPal
+            Ajouter au panier — ${(PRODUCT.price * qty).toFixed(2)}
           </button>
 
           <p className="text-sm text-muted-foreground mt-3">
-            Free shipping · Usually ships in 1–2 business days
+            Livraison gratuite · Expédié sous 1 à 2 jours ouvrés en général
           </p>
 
           <div className="mt-8 border-t border-border">
             {[
-              { id: "box", title: "What's in the box", body: PRODUCT.inBox.join(" · ") },
+              { id: "box", title: "Contenu de la boîte", body: PRODUCT.inBox.join(" · ") },
               {
                 id: "ship",
-                title: "Shipping & returns",
-                body: "Free shipping on orders over $35 within the US. 30-day hassle-free returns — full refund, no questions asked.",
+                title: "Livraison et retours",
+                body: "Livraison gratuite pour les commandes de plus de 35 $ aux États-Unis. Retours sous 30 jours, sans tracas — remboursement complet, sans questions.",
               },
               {
                 id: "spec",
-                title: "Specifications",
-                body: "Pressure: 20–110 PSI · Tank: 300ml BPA-free · Battery: 90 days toothbrush / 30 days flosser · USB-C charging · IPX7 waterproof.",
+                title: "Caractéristiques",
+                body: "Pression : 20–110 PSI · Réservoir : 300 ml sans BPA · Batterie : 90 jours brosse à dents / 30 jours hydropulseur · Charge USB-C · Étanche IPX7.",
               },
             ].map((acc) => (
               <Accordion

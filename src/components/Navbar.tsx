@@ -39,20 +39,20 @@ export default function Navbar() {
         <Link
           to="/"
           className="flex items-center"
-          aria-label="H2OFLOSS home"
+          aria-label="Accueil H2OFLOSS"
         >
           <img src="/images/ions.webp" alt="H2OFLOSS" className="h-16 w-auto" />
         </Link>
 
         <div className="hidden md:flex items-center gap-10 text-sm tracking-wide text-foreground">
-          <a href="#features" className="hover:opacity-60 transition-opacity">Features</a>
-          <a href="#how" className="hover:opacity-60 transition-opacity">How It Works</a>
-          <a href="#reviews" className="hover:opacity-60 transition-opacity">Reviews</a>
+          <a href="#features" className="hover:opacity-60 transition-opacity">Fonctionnalités</a>
+          <a href="#how" className="hover:opacity-60 transition-opacity">Comment ça marche</a>
+          <a href="#reviews" className="hover:opacity-60 transition-opacity">Avis</a>
         </div>
 
         <Link
           to="/cart"
-          aria-label={`Cart, ${count} items`}
+          aria-label={`Panier, ${count} articles`}
           className="relative inline-flex items-center justify-center w-10 h-10 hover:opacity-60 transition-opacity"
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">

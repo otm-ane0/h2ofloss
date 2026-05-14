@@ -43,9 +43,9 @@ export default function Features() {
   return (
     <section id="features" ref={ref} className="bg-surface py-24 lg:py-28">
       <div className="container-dawn">
-        <h2 className="text-center text-3xl md:text-[40px]">Built for a deeper clean.</h2>
+        <h2 className="text-center text-3xl md:text-[40px]">Conçu pour un nettoyage plus en profondeur.</h2>
         <p className="text-center mt-4 text-muted-foreground text-[18px] max-w-xl mx-auto">
-          Two professional-grade devices. One simple routine.
+          Deux appareils de niveau professionnel. Une routine simple.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16 mt-16">

@@ -37,7 +37,7 @@ export default function Reviews() {
   return (
     <section id="reviews" ref={ref} className="bg-background py-24 lg:py-28">
       <div className="container-dawn">
-        <h2 className="text-center text-3xl md:text-[40px]">What our customers say.</h2>
+        <h2 className="text-center text-3xl md:text-[40px]">Ce que disent nos clients.</h2>
 
         <div className="mt-14 grid grid-cols-1 md:grid-cols-[200px_1fr] gap-10 max-w-3xl mx-auto items-center">
           <div className="text-center md:text-left">
@@ -46,7 +46,7 @@ export default function Reviews() {
               <Stars rating={PRODUCT.rating} />
             </div>
             <div className="mt-1 text-sm text-muted-foreground">
-              Based on {PRODUCT.reviewCount} reviews
+              Basé sur {PRODUCT.reviewCount} avis
             </div>
           </div>
           <div className="space-y-2">
@@ -81,7 +81,7 @@ export default function Reviews() {
 function Stars({ rating }: { rating: number }) {
   const full = Math.round(rating);
   return (
-    <span className="inline-flex gap-0.5" aria-label={`${rating} out of 5`}>
+    <span className="inline-flex gap-0.5" aria-label={`${rating} sur 5`}>
       {Array.from({ length: 5 }).map((_, i) => (
         <svg key={i} width="16" height="16" viewBox="0 0 24 24" fill={i < full ? "currentColor" : "none"} stroke="currentColor" strokeWidth="1.5">
           <path d="M12 2l3 7h7l-5.5 4.5L18 22l-6-4-6 4 1.5-8.5L2 9h7l3-7Z" />
