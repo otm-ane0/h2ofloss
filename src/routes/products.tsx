@@ -240,7 +240,7 @@ function BuyForm({
 
       <div className="flex items-baseline flex-wrap gap-3">
         <span className="text-lg text-muted-foreground line-through">$89.99</span>
-        <span className="text-3xl font-semibold">$59.59</span>
+        <span className="text-3xl font-semibold">$59.99</span>
       </div>
 
       {/* Trust badges */}
