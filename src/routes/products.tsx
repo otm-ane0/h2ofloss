@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useCallback, useEffect, useRef, type ReactNode } from "react";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
@@ -226,10 +226,12 @@ function BuyForm({
   qty,
   setQty,
   onAddToCart,
+  onBuyNow,
 }: {
   qty: number;
   setQty: React.Dispatch<React.SetStateAction<number>>;
   onAddToCart: () => void;
+  onBuyNow: () => void;
 }) {
   return (
     <div className="flex flex-col gap-5 px-6 lg:px-10 py-8">
@@ -279,7 +281,15 @@ function BuyForm({
         >
           Ajouter au panier
         </button>
-       
+        <button
+          onClick={onBuyNow}
+          className="w-full py-4 text-white text-sm tracking-[0.18em] uppercase font-medium hover:opacity-90 transition-opacity"
+          style={{ backgroundColor: "#5A31F4" }}
+          
+        >
+          
+          Acheter maintenant
+        </button>
       </div>
 
      
@@ -350,6 +360,7 @@ function HeroSection() {
   const [qty, setQty] = useState(1);
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
   const { addItem, openDrawer } = useCart();
+  const navigate = useNavigate();
 
   const handleAddToCart = () => {
     for (let i = 0; i < qty; i++) {
@@ -363,6 +374,10 @@ function HeroSection() {
       });
     }
     openDrawer();
+  };
+
+  const handleBuyNow = () => {
+    navigate({ to: "/cart" });
   };
 
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
@@ -410,7 +425,7 @@ function HeroSection() {
           >
             <style>{`.hf-form::-webkit-scrollbar { display: none }`}</style>
             <div className="hf-form">
-              <BuyForm qty={qty} setQty={setQty} onAddToCart={handleAddToCart} />
+              <BuyForm qty={qty} setQty={setQty} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
             </div>
           </div>
         </div>
@@ -428,7 +443,7 @@ function HeroSection() {
             badge={i === 0 ? saleBadge : undefined}
           />
         ))}
-        <BuyForm qty={qty} setQty={setQty} onAddToCart={handleAddToCart} />
+        <BuyForm qty={qty} setQty={setQty} onAddToCart={handleAddToCart} onBuyNow={handleBuyNow} />
       </div>
 
       {/* ══════════ LIGHTBOX ══════════ */}
