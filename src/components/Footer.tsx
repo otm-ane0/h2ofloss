@@ -13,7 +13,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-surface pt-20 pb-10">
+    <footer className="bg-surface pt-20 pb-28 md:pb-10">
       <div className="container-dawn">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 pb-14">
           <div>

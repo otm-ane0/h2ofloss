@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { Link } from "@tanstack/react-router";
 import { PRODUCT } from "@/lib/product";
 import { useCart } from "@/context/CartContext";
 
@@ -65,6 +66,7 @@ export default function Hero() {
       ref={sectionRef}
       data-hero
       className="relative overflow-hidden min-h-[88vh] flex items-center"
+      style={{ marginTop: -112, paddingTop: 112 }}
     >
       {/* ── Background Video ── */}
       <video
@@ -112,12 +114,12 @@ export default function Hero() {
             >
               Ajouter au panier — ${PRODUCT.price.toFixed(2)}
             </button>
-            <a
-              href="#buy"
+            <Link
+              to="/products"
               className="text-sm text-white underline underline-offset-4 hover:opacity-60 transition-opacity"
             >
               Voir les détails ↓
-            </a>
+            </Link>
           </div>
 
           <div ref={trustRef} className="mt-8 flex flex-wrap gap-6 text-sm text-white/70">

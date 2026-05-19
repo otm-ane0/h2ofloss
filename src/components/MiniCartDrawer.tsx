@@ -9,7 +9,9 @@ export default function MiniCartDrawer() {
   if (!item) return null;
 
   const displayQty = lastAdded?.quantity ?? item.quantity ?? 1;
-  const unitComparePrice = item.id === PRODUCT.id ? PRODUCT.comparePrice : item.price;
+  const unitComparePrice =
+    item.comparePrice ??
+    (item.id === PRODUCT.id ? PRODUCT.comparePrice : item.price);
   const comparePrice = unitComparePrice * displayQty;
   const displayPrice = item.price * displayQty;
 

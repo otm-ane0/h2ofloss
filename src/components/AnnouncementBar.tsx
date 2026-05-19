@@ -14,9 +14,10 @@ export default function AnnouncementBar() {
   return (
     <div
       ref={ref}
-      className="w-full bg-primary text-primary-foreground text-[11px] tracking-[0.2em] uppercase text-center py-2.5 font-medium"
+      className="w-full text-[11px] tracking-[0.2em] uppercase text-center py-2.5 font-medium"
+      style={{ backgroundColor: "#ffffff", color: "#1DA1D4" }}
     >
-      Livraison gratuite pour les commandes de plus de 35 $ · Retours sous 30 jours
+      Welcome to h2ofloss!
     </div>
   );
 }

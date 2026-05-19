@@ -6,6 +6,7 @@ export interface CartItem {
   name: string;
   variant: ProductVariant;
   price: number;
+  comparePrice?: number;
   quantity: number;
   image: string;
 }
@@ -25,7 +26,7 @@ interface CartContextValue {
 }
 
 const CartContext = createContext<CartContextValue | null>(null);
-const STORAGE_KEY = "h2ofloss_cart_v1";
+const STORAGE_KEY = "h2ofloss_cart_v2";
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
