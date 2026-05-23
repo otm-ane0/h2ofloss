@@ -9,7 +9,7 @@ interface Row {
   eyebrow: string;
   title: string;
   body: string;
-  cta: string;
+  cta?: string;
   ctaHref?: string;
   image: string;
   imageLeft: boolean;
@@ -31,6 +31,7 @@ const ROWS: Row[] = [
     title: "2 minutes. Un sourire éclatant pour la vie.",
     body: "Minuteur intelligent et rappels de zone pour un brossage parfait à chaque fois.",
     cta: "En savoir plus",
+    ctaHref: "/products",
     image: "/images/dd.webp",
     imageLeft: false,
   },
@@ -38,7 +39,6 @@ const ROWS: Row[] = [
     eyebrow: "Système duo",
     title: "Ensemble, ils éliminent 2x plus de plaque.",
     body: "Utilisez-les chaque jour pour des résultats cliniquement supérieurs. Recommandé par des professionnels dentaires dans le monde entier.",
-    cta: "Voir les études",
     image: "/images/life3.jpg",
     imageLeft: true,
     imageContain: true,
@@ -114,18 +114,19 @@ export default function ImageWithText() {
               </p>
               <h2 className="mt-4 text-3xl md:text-4xl">{r.title}</h2>
               <p className="mt-5 text-[16px] text-muted-foreground leading-[1.7]">{r.body}</p>
-              {r.ctaHref ? (
-                <Link
-                  to={r.ctaHref}
-                  className="mt-8 inline-block bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
-                >
-                  {r.cta}
-                </Link>
-              ) : (
-                <button className="mt-8 bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors">
-                  {r.cta}
-                </button>
-              )}
+              {r.cta &&
+                (r.ctaHref ? (
+                  <Link
+                    to={r.ctaHref}
+                    className="mt-8 inline-block bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors"
+                  >
+                    {r.cta}
+                  </Link>
+                ) : (
+                  <button className="mt-8 bg-primary text-primary-foreground px-8 py-4 text-sm tracking-[0.2em] uppercase font-medium hover:bg-[#333] transition-colors">
+                    {r.cta}
+                  </button>
+                ))}
             </div>
           </div>
         </div>
