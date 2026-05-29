@@ -3,6 +3,7 @@ import { useCart } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
+import { ttqTrack, TIKTOK_CURRENCY } from "@/lib/tiktok";
 
 export const Route = createFileRoute("/cart")({
   head: () => ({
@@ -101,6 +102,35 @@ function CartPage() {
               </div>
               <button
                 onClick={() => {
+                  const contents = items.map((item) => ({
+                    content_id: item.id,
+                    content_name: item.name,
+                    price: item.price,
+                    quantity: item.quantity,
+                  }));
+                  const shipping = total > 35 ? 0 : 5;
+                  const value = Number((total + shipping).toFixed(2));
+                  const totalQty = items.reduce((sum, item) => sum + item.quantity, 0);
+
+                  if (contents.length > 0) {
+                    ttqTrack("InitiateCheckout", {
+                      content_type: "product",
+                      contents,
+                      value,
+                      currency: TIKTOK_CURRENCY,
+                      quantity: totalQty,
+                    });
+
+                    try {
+                      sessionStorage.setItem(
+                        "h2ofloss_checkout",
+                        JSON.stringify({ contents, value, currency: TIKTOK_CURRENCY }),
+                      );
+                    } catch {
+                      // ignore storage errors
+                    }
+                  }
+
                   clear();
                   // Redirect user to external tracking/checkout URL
                   window.location.href =

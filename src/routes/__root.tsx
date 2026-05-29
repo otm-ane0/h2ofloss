@@ -1,6 +1,8 @@
-import { Outlet, Link, createRootRoute } from "@tanstack/react-router";
+import { Outlet, Link, createRootRoute, useRouterState } from "@tanstack/react-router";
+import { useEffect, useRef } from "react";
 import { CartProvider } from "@/context/CartContext";
 import MiniCartDrawer from "@/components/MiniCartDrawer";
+import { ttqPage } from "@/lib/tiktok";
 
 function NotFoundComponent() {
   return (
@@ -32,8 +34,24 @@ export const Route = createRootRoute({
 function RootComponent() {
   return (
     <CartProvider>
+      <PixelRouteTracker />
       <Outlet />
       <MiniCartDrawer />
     </CartProvider>
   );
+}
+
+function PixelRouteTracker() {
+  const location = useRouterState({ select: (state) => state.location });
+  const isFirst = useRef(true);
+
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+    ttqPage();
+  }, [location.pathname, location.search, location.hash]);
+
+  return null;
 }

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import type { ProductVariant } from "@/lib/product";
+import { ttqTrack, TIKTOK_CURRENCY } from "@/lib/tiktok";
 
 export interface CartItem {
   id: string;
@@ -54,6 +55,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, [items, hydrated]);
 
   const addItem: CartContextValue["addItem"] = (item, qty = 1) => {
+    const quantity = Math.max(1, qty);
+    ttqTrack("AddToCart", {
+      content_id: item.id,
+      content_type: "product",
+      content_name: item.name,
+      price: item.price,
+      quantity,
+      value: item.price * quantity,
+      currency: TIKTOK_CURRENCY,
+      contents: [
+        {
+          content_id: item.id,
+          content_name: item.name,
+          price: item.price,
+          quantity,
+        },
+      ],
+    });
     setLastAdded({ ...item, quantity: qty });
     setIsDrawerOpen(true);
     setItems((prev) => {

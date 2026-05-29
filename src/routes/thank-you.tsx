@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { ttqTrack, TIKTOK_CURRENCY } from "@/lib/tiktok";
 
 export const Route = createFileRoute("/thank-you")({
   head: () => ({
@@ -14,6 +16,44 @@ export const Route = createFileRoute("/thank-you")({
 });
 
 function ThankYou() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    let raw: string | null = null;
+
+    try {
+      raw = sessionStorage.getItem("h2ofloss_checkout");
+    } catch {
+      return;
+    }
+
+    if (!raw) return;
+
+    try {
+      const payload = JSON.parse(raw) as {
+        contents?: unknown;
+        value?: number;
+        currency?: string;
+      };
+
+      if (typeof payload.value === "number" && payload.value > 0) {
+        ttqTrack("CompletePayment", {
+          content_type: "product",
+          contents: Array.isArray(payload.contents) ? payload.contents : [],
+          value: payload.value,
+          currency: payload.currency ?? TIKTOK_CURRENCY,
+        });
+      }
+    } catch {
+      // ignore parse errors
+    } finally {
+      try {
+        sessionStorage.removeItem("h2ofloss_checkout");
+      } catch {
+        // ignore storage errors
+      }
+    }
+  }, []);
+
   return (
     <>
       <AnnouncementBar />

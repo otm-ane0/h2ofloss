@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import StickyCartBar from "@/components/StickyCartBar";
 import { useCart } from "@/context/CartContext";
+import { ttqTrack, TIKTOK_CURRENCY } from "@/lib/tiktok";
 
 export const Route = createFileRoute("/products")({
   component: ProductPage,
@@ -156,6 +157,25 @@ function ZoomableImage({
 }
 
 function ProductPage() {
+  useEffect(() => {
+    ttqTrack("ViewContent", {
+      content_id: PROCARE.id,
+      content_type: "product",
+      content_name: PROCARE.name,
+      price: PROCARE.price,
+      value: PROCARE.price,
+      currency: TIKTOK_CURRENCY,
+      contents: [
+        {
+          content_id: PROCARE.id,
+          content_name: PROCARE.name,
+          price: PROCARE.price,
+          quantity: 1,
+        },
+      ],
+    });
+  }, []);
+
   return (
     <>
       <AnnouncementBar />
@@ -363,20 +383,48 @@ function HeroSection() {
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    for (let i = 0; i < qty; i++) {
-      addItem({
+    addItem(
+      {
         id: PROCARE.id,
         name: PROCARE.name,
         variant: PROCARE.variant,
         price: PROCARE.price,
         comparePrice: PROCARE.comparePrice,
         image: PRODUCT_IMAGES[0],
-      });
-    }
+      },
+      qty,
+    );
     openDrawer();
   };
 
   const handleBuyNow = () => {
+    const contents = [
+      {
+        content_id: PROCARE.id,
+        content_name: PROCARE.name,
+        price: PROCARE.price,
+        quantity: qty,
+      },
+    ];
+    const value = Number((PROCARE.price * qty).toFixed(2));
+
+    ttqTrack("InitiateCheckout", {
+      content_type: "product",
+      contents,
+      value,
+      currency: TIKTOK_CURRENCY,
+      quantity: qty,
+    });
+
+    try {
+      sessionStorage.setItem(
+        "h2ofloss_checkout",
+        JSON.stringify({ contents, value, currency: TIKTOK_CURRENCY }),
+      );
+    } catch {
+      // ignore storage errors
+    }
+
     window.location.href =
       "https://www.nhlv1trk.com/FG4FQZ7/C8MDTLF/?sub3=H2ofloss%202-in-1%20Oral%20Care%20Kit&sub4=https://h2ofloss.com/cdn/shop/files/1_fcde47ed-19ee-400e-ba06-03e20b190cc5_1728x.jpg?v=1762929933";
   };
