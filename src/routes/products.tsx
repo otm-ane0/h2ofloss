@@ -426,7 +426,7 @@ function HeroSection() {
     }
 
     window.location.href =
-      "https://www.nhlv1trk.com/FG4FQZ7/C8MDTLF/?sub3=H2ofloss%202-in-1%20Oral%20Care%20Kit&sub4=https://h2ofloss.com/cdn/shop/files/1_fcde47ed-19ee-400e-ba06-03e20b190cc5_1728x.jpg?v=1762929933";
+      "https://www.nhlv1trk.com/FG4FQZ7/C8MDTLF/?sub3=H2oFloss&sub4=https://h2ofloss.com/cdn/shop/files/1_fcde47ed-19ee-400e-ba06-03e20b190cc5_1728x.jpg?v=1762929933";
   };
 
   const closeLightbox = useCallback(() => setLightboxIdx(null), []);
